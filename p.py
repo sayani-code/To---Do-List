@@ -1,17 +1,15 @@
 import customtkinter as ctk
 from tkinter import messagebox
 
-# -----------------------------
+
 # App Settings
-# -----------------------------
-ctk.set_appearance_mode("dark")      # "light" or "dark"
+
+ctk.set_appearance_mode("light")      
 ctk.set_default_color_theme("blue")
 
 tasks = []
 
-# -----------------------------
 # Functions
-# -----------------------------
 def add_task():
     task = task_entry.get().strip()
 
@@ -32,7 +30,7 @@ def update_tasks():
     task_list.delete("0.0", "end")
 
     for index, task in enumerate(tasks, start=1):
-        status = "✅" if task["completed"] else "❌"
+        status = "[Done ✅]" if task["completed"] else "[Pending ❌]"
         task_list.insert(
             "end",
             f"{index}. {task['name']}   {status}\n"
@@ -73,9 +71,8 @@ def delete_task():
         messagebox.showerror("Error", "Task not found.")
 
 
-# -----------------------------
+
 # Main Window
-# -----------------------------
 app = ctk.CTk()
 app.title("To-Do List")
 app.geometry("500x600")
@@ -107,7 +104,8 @@ task_list = ctk.CTkTextbox(
     app,
     width=420,
     height=250,
-    font=("Arial", 15)
+    font=("Arial", 15),
+    
 )
 task_list.pack(pady=20)
 
